@@ -22,10 +22,9 @@ const image = props.index < 3 ? `@/assets/rank${props.index}.png`.toString : nul
         <span v-else class="item-rank">{{ index }}</span>
 
         <!--用户信息-->
-        <div>
-            <img class="item-avatar" :src="model.avatar" alt="avatar">
-            <span class="item-name">{{ model.name }}</span>
-        </div>
+        <img class="item-avatar" :src="model.avatar" alt="avatar">
+
+        <input type="text" :value="model.name" disabled="false" class="item-name" />
 
         <!--邀请人数-->
         <span class="item-invite">{{ model.invite }}</span>
@@ -73,10 +72,14 @@ const image = props.index < 3 ? `@/assets/rank${props.index}.png`.toString : nul
     color: black;
     font-size: 14px;
     padding-left: 8px;
-    overflow: hidden;
-    max-width: 100px;
+    width: 100px;
     text-overflow: ellipsis;
     white-space: nowrap;
+    background-color: transparent;
+    border: none;
+    /* border-style: dotted;
+    border-width: 2px;
+    border-color: red; */
 }
 
 .item-invite {
