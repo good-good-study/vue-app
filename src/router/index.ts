@@ -1,7 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Router from './routes'
+import { createRouter, createWebHistory } from "vue-router";
+import Router from "./routes";
 
-const router = createRouter({
+// 全局的路由导航实例
+const navigator = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   // routes: [
   //   {
@@ -19,42 +20,20 @@ const router = createRouter({
   //   }
   // ]
 
-  routes: [
-    {
-      path: Router.home.path,
-      name: Router.home.name,
-      component: Router.home.componet
-    },
-    {
-      path: Router.flutter.path,
-      name: Router.flutter.name,
-      component: Router.flutter.componet
-    },
-    {
-      path: Router.rank.path,
-      name: Router.rank.name,
-      component: Router.rank.componet
-    }, {
-      path: Router.a.path,
-      name: Router.a.name,
-      component: Router.a.componet
-    },
-    {
-      path: Router.b.path,
-      name: Router.b.name,
-      component: Router.b.componet
-    },
-    {
-      path: Router.c.path,
-      name: Router.c.name,
-      component: Router.c.componet
-    },
-    {
-      path: Router.d.path,
-      name: Router.d.name,
-      component: Router.d.componet
-    },
-  ]
-})
 
-export default router
+  scrollBehavior(to, from, savedPosition) {
+    return {
+      top: 0, behavior: 'smooth'
+    }
+  },
+  routes: [
+    // 重定向
+    {
+      path: '/',
+      redirect: Router.home.path,
+    },
+    ...Object.values(Router),
+  ],
+});
+
+export default navigator;
